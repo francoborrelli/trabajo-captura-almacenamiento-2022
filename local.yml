@@ -1,0 +1,89 @@
+version: '3.3'
+
+services:
+  api:
+    container_name: api
+    build:
+      context: ./
+      dockerfile: ./docker/local/Dockerfile
+    volumes:
+      - ./:/app
+      - ./.m2:/root/.m2
+    working_dir: /app
+    command: sh ./docker/local/run.sh
+    env_file:
+      - ./env/.env.app
+    ports:
+      - 8080:8080
+      - 35729:35729
+      - 5005:5005
+    depends_on:
+      - postgres
+      - elasticsearch
+
+  postgres:
+    image: postgres
+    container_name: postgres
+    ports:
+      - '5432:5432'
+    env_file:
+      - ./env/.env.postgres
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U docker']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.2.0
+    container_name: elasticsearch
+    environment:
+      - node.name=elasticsearch
+      - discovery.type=single-node
+      #      - discovery.seed_hosts=elasticsearch
+      #      - cluster.initial_master_nodes=elasticsearch
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - 'ES_JAVA_OPTS=-Xms512m -Xmx512m'
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata1:/usr/share/elasticsearch/data
+    ports:
+      - 9300:9300
+      - 9200:9200
+    networks:
+      - local_network
+
+  # kibana:
+  #   image: docker.elastic.co/kibana/kibana:7.2.0
+  #   container_name: kibana
+  #   environment:
+  #     ELASTICSEARCH_URL: 'http://elasticsearch:9300'
+  #   ports:
+  #     - 5601:5601
+  #   networks:
+  #     - local_network
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:7.2.0
+    container_name: logstash
+    command: logstash -f /etc/logstash/conf.d/logstash.conf
+    volumes:
+      - ./config:/etc/logstash/conf.d
+    ports:
+      - '5000:5000'
+    networks:
+      - local_network
+
+volumes:
+  esdata1:
+  postgres-data:
+    driver: local
+
+networks:
+  local_network:
