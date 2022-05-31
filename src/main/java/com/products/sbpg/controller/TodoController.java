@@ -1,15 +1,17 @@
-package com.johnleonardo.sbpg.controller;
+package com.products.sbpg.controller;
 
-import com.johnleonardo.sbpg.exception.ResourceNotFoundException;
-import com.johnleonardo.sbpg.SbpgApplication;
-import com.johnleonardo.sbpg.model.Todo;
-import com.johnleonardo.sbpg.repository.TodoRepository;
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+
+import com.products.sbpg.SbpgApplication;
+import com.products.sbpg.exception.ResourceNotFoundException;
+import com.products.sbpg.model.Todo;
+import com.products.sbpg.repository.TodoRepository;
+
 import java.util.List;
 
 @RestController

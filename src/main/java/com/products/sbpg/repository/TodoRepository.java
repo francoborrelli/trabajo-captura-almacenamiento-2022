@@ -1,6 +1,7 @@
-package com.johnleonardo.sbpg.repository;
+package com.products.sbpg.repository;
 
-import com.johnleonardo.sbpg.model.Todo;
+import com.products.sbpg.model.Todo;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

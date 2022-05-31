@@ -1,9 +1,17 @@
-package com.johnleonardo.sbpg;
+package com.products.sbpg;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.slf4j.*;
 
+
+/**
+ * Clase principal de la aplicación.
+ * 
+ * @author Borrelli Franco Martín
+ * @author Carbone José Ignacio
+ *
+ */
 @SpringBootApplication
 public class SbpgApplication {
 

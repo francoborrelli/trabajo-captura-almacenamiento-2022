@@ -1,4 +1,4 @@
-package com.johnleonardo.sbpg.model;
+package com.products.sbpg.model;
 
 import javax.persistence.*;
 
