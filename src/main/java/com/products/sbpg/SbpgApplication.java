@@ -1,9 +1,7 @@
 package com.products.sbpg;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.flywaydb.core.Flyway;
 import org.slf4j.*;
 
 /**
@@ -21,8 +19,6 @@ public class SbpgApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SbpgApplication.class, args);
 		logger.info("Starting migrations...");
-		Flyway flyway = Flyway.configure().load();
-		flyway.migrate();
 		logger.info("Finished migrations...");
 		logger.info("Application initialized...");
 	}
