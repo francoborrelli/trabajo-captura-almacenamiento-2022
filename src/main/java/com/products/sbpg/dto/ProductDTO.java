@@ -35,12 +35,18 @@ public class ProductDTO {
 	private int version;
 
 	/**
+	 * Es la marca del producto.
+	 */
+	private BrandDTO brand;
+
+	/**
 	 * Constructor.
 	 * 
 	 * @param anId       	es el identificador del producto.
 	 * @param aName 		es el nombre del producto.
 	 * @param aDescription  es la descripción del producto.
 	 * @param aVersion   	es la versión del producto.
+	 * @param brand   		es la marca del producto.
 	 */
 	public ProductDTO(long anId, String aName, String aDescription, int aVersion) {
 		this.setId(anId);
@@ -79,7 +85,7 @@ public class ProductDTO {
 	/**
 	 * Setter.
 	 * 
-	 * @param anUsername es el username de este producto.
+	 * @param aDescription es la descripcion de este producto.
 	 */
 	public void setDescription(String aDescription) {
 		this.description = aDescription;

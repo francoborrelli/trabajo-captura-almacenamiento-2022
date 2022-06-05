@@ -45,7 +45,7 @@ public class ProductServiceImpl implements IProductService {
 	 * 
 	 * @return Lista de Product.
 	 */
-	public List<Product> getAllProducts() {
+	public List<Product> findAll() {
 		return this.getProductRepository().findAll();
 	}
 
