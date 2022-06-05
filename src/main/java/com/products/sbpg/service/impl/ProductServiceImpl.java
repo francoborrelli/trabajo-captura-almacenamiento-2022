@@ -4,6 +4,7 @@
 package com.products.sbpg.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -46,6 +47,11 @@ public class ProductServiceImpl implements IProductService {
 	 */
 	public List<Product> getAllProducts() {
 		return this.getProductRepository().findAll();
+	}
+
+
+	public Optional<Product> findById(long anId) {
+		return this.getProductRepository().findById(anId);
 	}
 
 	/**

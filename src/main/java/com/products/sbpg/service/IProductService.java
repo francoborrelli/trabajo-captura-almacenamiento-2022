@@ -4,6 +4,7 @@
 package com.products.sbpg.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.products.sbpg.dto.ProductDTO;
 import com.products.sbpg.model.Product;
@@ -22,7 +23,14 @@ public interface IProductService {
 	 * 
 	 * @return Lista de ProductDTO.
 	 */
-	public List<Product> getAllProducts();
+	public List<Product> findAll();
+
+	/**
+	 * Recupera un product
+	 * 
+	 * @return el producto con el id indicado
+	 */
+	public Optional<Product> findById(long anId);
 
 	/**
 	 * Agrega un nuevo producto.
