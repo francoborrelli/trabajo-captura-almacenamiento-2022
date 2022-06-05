@@ -35,7 +35,7 @@ public class Brand {
     private long id;
 
 	/**
-	 * Es el nombre del producto.
+	 * Es el nombre de la marca.
 	 */
 	private String name;
 
@@ -85,7 +85,7 @@ public class Brand {
 	/**
 	 * Getter.
 	 * 
-	 * @return el nombre del producto.
+	 * @return el nombre de la marca.
 	 */
 	public String getName() {
 		return this.name;
@@ -94,7 +94,7 @@ public class Brand {
 	/**
 	 * Setter.
 	 * 
-	 * @param aName es el nombre del producto.
+	 * @param aName es el nombre de la marca.
 	 */
 	public void setName(String aName) {
 		this.name = aName;
@@ -103,7 +103,7 @@ public class Brand {
 	/**
 	 * Getter.
 	 * 
-	 * @return la versión del producto.
+	 * @return la versión de la marca.
 	 */
 	public int getVersion() {
 		return this.version;
@@ -112,7 +112,7 @@ public class Brand {
 	/**
 	 * Setter.
 	 * 
-	 * @param version es la versión del producto.
+	 * @param version es la versión de la marca.
 	 */
 	public void setVersion(int version) {
 		this.version = version;
