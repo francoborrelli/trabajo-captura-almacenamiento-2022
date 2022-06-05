@@ -1,69 +1,69 @@
-[![build-workflow](https://github.com/jdleo/docker-java-springboot-postgres-api/actions/workflows/build.yml/badge.svg)](https://github.com/jdleo/docker-java-springboot-postgres-api/actions/workflows/build.yml) [![test](https://github.com/jdleo/docker-java-springboot-postgres-api/actions/workflows/buildtest.yml/badge.svg)](https://github.com/jdleo/docker-java-springboot-postgres-api/actions/workflows/buildtest.yml)
 
-# Docker Java Springboot w/ Postgres, Dockerized
+# Trabajo Final - Captura y Almacenamiento de la Información 2022
 
-Simple proof-of-concept boilerplate for dockerized Java Springboot API, with postgresql service in Docker Compose.
+## Requisitos
 
-## Run development environment
+* Docker
+* Docker Compose
 
-```
-docker-compose -f local.yml up
-```
-
-## Run test environment
+## Buildear imagen
 
 ```
-docker-compose -f test.yml up
+docker-compose -f local.yml build
+```
+
+## Levantar proyecto
+
+```
+docker-compose -f local.yml up -d
 ```
 
 ## Endpoints
 
-### List Todos
+### Listar Productos
 
 ```
-GET localhost:8080/api/v1/todos
+GET localhost:8080/api/v1/products
 ```
 
-### Get Todo
+### Get Producto
 
 ```
-GET localhost:8080/api/v1/todos/{id}
+GET localhost:8080/api/v1/products/{id}
 ```
 
-### Create Todo
+### Create Product
 
 ```
-POST localhost:8080/api/v1/todos
+POST localhost:8080/api/v1/products
 ```
 
 Body:
 
 ```json
 {
-  "title": "test",
+  "name": "test",
   "description": "test description",
-  "completed": false
 }
 ```
 
 ### Update Todo
 
 ```
-PUT localhost:8080/api/v1/todos/{id}
+PUT localhost:8080/api/v1/products/{id}
 ```
 
 Body:
 
 ```json
 {
-  "title": "test",
+  "name": "test",
   "description": "updated description",
-  "completed": true
 }
 ```
 
 ### Delete Todo
 
 ```
-DELETE localhost:8080/api/v1/todos/{id}
+DELETE localhost:8080/api/v1/products/{id}
 ```
