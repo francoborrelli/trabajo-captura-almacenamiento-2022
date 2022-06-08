@@ -11,14 +11,15 @@ import com.products.sbpg.model.Product;
 /**
  * Clase que representa el repositorio de productos.
  *
- * @author Javier Bazzocco
- *
+ * @author Borrelli Franco Martín
+ * @author Carbone José Ignacio
+ *  
  */
 @Repository
 public interface JPAProductRepository extends JpaRepository<Product, Long>, CustomProductRepository {
 
 	/**
-	 * Recupera un producto por su username.
+	 * Recupera un producto por su nombre.
 	 * 
 	 * @param aName es el nombre del producto.
 	 * @return el producto con el nombre dado.

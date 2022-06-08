@@ -22,5 +22,4 @@ public class SbpgApplication {
 		logger.info("Finished migrations...");
 		logger.info("Application initialized...");
 	}
-
 }

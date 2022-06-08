@@ -68,9 +68,11 @@ public class Product {
 	 * 
 	 * @param aName 		es el nombre del producto.
 	 * @param aDescription  es la descripción del producto.
+	 * @param aBrand		es la marca del producto.
 	 */
-	public Product(String aName, String aDescription) {
+	public Product(String aName, String aDescription, Brand aBrand) {
 		this.setName(aName);
+		this.setBrand(aBrand);
 		this.setDescription(aDescription);
 	}
 
@@ -127,6 +129,25 @@ public class Product {
 	public void setDescription(String aDescription) {
 		this.description = aDescription;
 	}
+
+	/**
+	 * Getter.
+	 * 
+	 * @return la marca del producto.
+	 */
+	public Brand getBrand() {
+		return this.brand;
+	}
+
+	/**
+	 * Setter.
+	 * 
+	 * @param aBrand es la marca del producto.
+	 */
+	public void setBrand(Brand aBrand) {
+		this.brand = aBrand;
+	}
+
 
 	/**
 	 * Getter.

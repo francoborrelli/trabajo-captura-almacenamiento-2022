@@ -7,7 +7,7 @@
 -- DROP TABLE public.brands;
 
 CREATE TABLE public.brands (
-	id int8 NOT NULL,
+	id SERIAL,
 	name varchar(255) NULL,
 	"version" int4 NOT NULL,
 	tsvector_search tsvector,
@@ -21,7 +21,7 @@ CREATE TABLE public.brands (
 -- DROP TABLE public.products;
 
 CREATE TABLE public.products (
-	id int8 NOT NULL,
+	id SERIAL,
 	description varchar(255) NULL,
 	name varchar(255) NULL,
 	"version" int4 NOT NULL,
