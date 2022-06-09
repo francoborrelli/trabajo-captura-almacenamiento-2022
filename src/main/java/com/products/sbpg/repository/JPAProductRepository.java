@@ -16,7 +16,7 @@ import com.products.sbpg.model.Product;
  *  
  */
 @Repository
-public interface JPAProductRepository extends JpaRepository<Product, Long>, CustomProductRepository {
+public interface JPAProductRepository extends JpaRepository<Product, Long> {
 
 	/**
 	 * Recupera un producto por su nombre.
@@ -25,5 +25,4 @@ public interface JPAProductRepository extends JpaRepository<Product, Long>, Cust
 	 * @return el producto con el nombre dado.
 	 */
 	public Product findByName(String aName);
-
 }

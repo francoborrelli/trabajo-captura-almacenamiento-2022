@@ -11,7 +11,8 @@ CREATE TABLE public.brands (
 	name varchar(255) NULL,
 	"version" int4 NOT NULL,
 	tsvector_search tsvector,
-	CONSTRAINT brands_pkey PRIMARY KEY (id)
+	CONSTRAINT brands_pkey PRIMARY KEY (id),
+  	CONSTRAINT name_unique UNIQUE (name)
 );
 
 -- public.products definition

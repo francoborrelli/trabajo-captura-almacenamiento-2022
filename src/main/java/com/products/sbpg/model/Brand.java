@@ -31,7 +31,7 @@ public class Brand {
 	 * Es el identificador de cada instancia.
 	 */
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
 	/**
