@@ -39,3 +39,4 @@ build/
 .m2
 
 *.csv
+*.tsv
