@@ -38,7 +38,7 @@ public interface JPABrandRepository extends JpaRepository<Brand, Long> {
 	 */
     @Transactional
     public default Brand findOrCreate(String aName) {
-		return this.findOneByName(aName).orElse(this.saveAndFlush(new Brand(aName)));
+		return this.findOneByName(aName).orElseGet(() ->this.saveAndFlush(new Brand(aName)));
     }
 }
 

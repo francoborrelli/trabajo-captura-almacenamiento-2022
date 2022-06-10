@@ -8,7 +8,7 @@
 
 CREATE TABLE public.brands (
 	id SERIAL,
-	name varchar(255) NULL,
+	name TEXT NULL,
 	"version" int4 NOT NULL,
 	tsvector_search tsvector,
 	CONSTRAINT brands_pkey PRIMARY KEY (id),
@@ -23,8 +23,8 @@ CREATE TABLE public.brands (
 
 CREATE TABLE public.products (
 	id SERIAL,
-	description varchar(255) NULL,
-	name varchar(255) NULL,
+	description TEXT NULL,
+	name TEXT NULL,
 	"version" int4 NOT NULL,
 	brand_id int8 NOT NULL,
 	tsvector_search tsvector,

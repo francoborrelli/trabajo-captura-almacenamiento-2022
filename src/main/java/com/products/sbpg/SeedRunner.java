@@ -12,9 +12,6 @@ import com.products.sbpg.model.Product;
 import com.products.sbpg.repository.JPABrandRepository;
 import com.products.sbpg.repository.JPAProductRepository;
 
-import me.tongfei.progressbar.ProgressBar;
-
-import java.util.Optional;
 import java.util.Scanner;
 import java.io.File; 
 
@@ -41,22 +38,25 @@ public class SeedRunner implements CommandLineRunner {
         String path = classLoader.getResource("products.tsv").getFile();
         File file = new File(path);
 
-        try (Scanner scanner = new Scanner(file);) {
-            // try-with-resource block
-            try (ProgressBar pb = new ProgressBar("Importando productos", file.length())) {
-                while (scanner.hasNextLine()) {
-                    String line = scanner.nextLine();
-                    String[] item = line.split("\\t");
-                    if (item.length == 3) {
-                        Brand brand = brandRepository.findOrCreate(item[1]);
-                        logger.info(item[0]);
-                        logger.info(item[1]);
-                        logger.info(item[2]);
-                        productRepository.save(new Product(item[0], item[2], brand));
-                    }
-                    pb.step(); // step by 1
+        try (Scanner scanner = new Scanner(file);) { 
+            int steps = 0;
+            long length = file.length();
+            long productsPerStep = length / 10000;
+
+            logger.info("Empezando importación de productos");
+
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] item = line.split("\\t");
+                if (item.length == 3) {
+                    Brand brand = brandRepository.findOrCreate(item[1]);
+                    productRepository.save(new Product(item[0], item[2], brand));
                 }
-            } 
+                steps++;
+                if (steps % productsPerStep == 0) {
+                    logger.info("Importación de productos al: " + (steps / ((float) productsPerStep * 100)) + " %");  
+                }
+            }
         }
     }
 }
