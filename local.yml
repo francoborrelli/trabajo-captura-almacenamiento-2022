@@ -5,12 +5,12 @@ services:
     container_name: api
     build:
       context: ./
-      dockerfile: ./docker/local/Dockerfile
+      dockerfile: ./docker/local/api/Dockerfile
     volumes:
       - ./:/app
       - ./.m2:/root/.m2
     working_dir: /app
-    command: sh ./docker/local/run.sh
+    command: sh ./docker/local/api/run.sh
     env_file:
       - ./env/.env.app
     ports:
@@ -20,6 +20,8 @@ services:
     depends_on:
       - postgres
       - elasticsearch
+    networks:
+      - local_network
 
   postgres:
     image: postgres
@@ -35,16 +37,21 @@ services:
       retries: 5
     volumes:
       - postgres-data:/var/lib/postgresql/data
+    networks:
+      - local_network
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.2.0
     container_name: elasticsearch
     environment:
       - node.name=elasticsearch
-      - discovery.type=single-node
-      #      - discovery.seed_hosts=elasticsearch
-      #      - cluster.initial_master_nodes=elasticsearch
       - cluster.name=docker-cluster
+      - discovery.type=single-node
+      - http.cors.enabled=true
+      - http.cors.allow-origin=*
+      - http.cors.allow-methods=OPTIONS,HEAD,GET,POST,PUT,DELETE
+      - http.cors.allow-headers=X-Requested-With,X-Auth-Token,Content-Type,Content-Length,Authorization
+      - transport.host=127.0.0.1
       - bootstrap.memory_lock=true
       - 'ES_JAVA_OPTS=-Xms512m -Xmx512m'
     ulimits:
@@ -52,10 +59,27 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - esdata1:/usr/share/elasticsearch/data
+      - esdata:/usr/share/elasticsearch/data
     ports:
       - 9300:9300
       - 9200:9200
+    networks:
+      - local_network
+
+  logstash:
+    build:
+      context: ./
+      dockerfile: ./docker/local/logstash/Dockerfile
+    container_name: logstash
+    env_file:
+      - ./env/.env.logstash
+    volumes:
+      - ./config/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+    ports:
+      - '5000:5000'
+    depends_on:
+      - postgres
+      - elasticsearch
     networks:
       - local_network
 
@@ -69,19 +93,8 @@ services:
   #   networks:
   #     - local_network
 
-  logstash:
-    image: docker.elastic.co/logstash/logstash:7.2.0
-    container_name: logstash
-    command: logstash -f /etc/logstash/conf.d/logstash.conf
-    volumes:
-      - ./config:/etc/logstash/conf.d
-    ports:
-      - '5000:5000'
-    networks:
-      - local_network
-
 volumes:
-  esdata1:
+  esdata:
   postgres-data:
     driver: local
 

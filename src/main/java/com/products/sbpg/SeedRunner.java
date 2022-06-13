@@ -49,12 +49,12 @@ public class SeedRunner implements CommandLineRunner {
                 String line = scanner.nextLine();
                 String[] item = line.split("\\t");
                 if (item.length == 3) {
-                    Brand brand = brandRepository.findOrCreate(item[1]);
-                    productRepository.save(new Product(item[0], item[2], brand));
+                    Brand brand = brandRepository.findOrCreate(item[2]);
+                    productRepository.save(new Product(item[0], item[1], brand));
                 }
                 steps++;
                 if (steps % productsPerStep == 0) {
-                    logger.info("Importación de productos al: " + (steps / ((float) productsPerStep * 100)) + " %");  
+                    logger.info("Importación de productos al: " + (steps / ((float) productsPerStep * 100)) + " % (" + steps + ")");  
                 }
             }
         }
