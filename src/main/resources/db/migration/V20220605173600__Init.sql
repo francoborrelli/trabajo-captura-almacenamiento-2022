@@ -33,7 +33,7 @@ CREATE TABLE public.products (
 
 
 -- public.products foreign keys
-ALTER TABLE public.products ADD CONSTRAINT fka3a4mpsfdf4d2y6r8ra3sc8mv FOREIGN KEY (brand_id) REFERENCES public.brands(id);
+ALTER TABLE public.products ADD CONSTRAINT fka3a4mpsfdf4d2y6r8ra3sc8mv FOREIGN KEY (brand_id) REFERENCES public.brands(id) ON DELETE CASCADE;
 
 
 CREATE INDEX products_search_idx ON public.products USING GIN(tsvector_search);
