@@ -31,6 +31,11 @@ public class ProductRequestDTO {
 	public String description;
 
 	/**
+	 * Es la el identificador de la marca del producto.
+	 */
+	public long brandId;
+
+	/**
 	 * Constructor.
 	 * 
 	 * @param id      		es el identificador del producto.

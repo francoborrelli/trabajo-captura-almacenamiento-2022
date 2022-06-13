@@ -1,7 +1,5 @@
 package com.products.sbpg;
 
-
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -14,6 +12,10 @@ import com.products.sbpg.repository.JPAProductRepository;
 
 import java.util.Scanner;
 import java.io.File; 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 @Component
 public class SeedRunner implements CommandLineRunner {
@@ -31,30 +33,25 @@ public class SeedRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        productRepository.deleteAll();
-        brandRepository.deleteAll();
-
         ClassLoader classLoader = getClass().getClassLoader();
         String path = classLoader.getResource("products.tsv").getFile();
-        File file = new File(path);
 
-        try (Scanner scanner = new Scanner(file);) { 
-            int steps = 0;
-            long length = file.length();
-            long productsPerStep = length / 10000;
+        int lineCount = 0;
+        String line;
 
-            logger.info("Empezando importación de productos");
+        int totalLines = (int) Files.lines(Paths.get(path)).count();
 
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path), 65536);) {
+            while((line = bufferedReader.readLine()) != null)
+            {
                 String[] item = line.split("\\t");
                 if (item.length == 3) {
                     Brand brand = brandRepository.findOrCreate(item[2]);
                     productRepository.save(new Product(item[0], item[1], brand));
                 }
-                steps++;
-                if (steps % productsPerStep == 0) {
-                    logger.info("Importación de productos al: " + (steps / ((float) productsPerStep * 100)) + " % (" + steps + ")");  
+                lineCount++;
+                if(lineCount % 10000 == 0) {
+                    logger.info("Cargando datos, completado al {}%", String.format("%.02f", 100 * lineCount / (float) totalLines));
                 }
             }
         }

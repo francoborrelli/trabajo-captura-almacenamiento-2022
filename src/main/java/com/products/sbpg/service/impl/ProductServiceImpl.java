@@ -15,6 +15,7 @@ import com.products.sbpg.dto.DTOFactory;
 import com.products.sbpg.dto.ProductDTO;
 import com.products.sbpg.model.Product;
 import com.products.sbpg.repository.JPAProductRepository;
+import com.products.sbpg.repository.JPABrandRepository;
 import com.products.sbpg.service.IProductService;
 
 /**
@@ -33,6 +34,12 @@ public class ProductServiceImpl implements IProductService {
 	 */
 	@Inject
 	private JPAProductRepository productRepository;
+
+	/**
+	 * Es el repositorio ligado a las marcas.
+	 */
+	@Inject
+	private JPABrandRepository brandRepository;
 
 	/**
 	 * Es el objeto encargado de crear los DTOs.
@@ -62,9 +69,9 @@ public class ProductServiceImpl implements IProductService {
 	 * @return un DTO que representa al producto recientemente creado.
 	 */
 	@Override
-	public ProductDTO addProduct(String aName, String aDescription) {
+	public ProductDTO addProduct(String aName, String aDescription, long brandId) {
 
-		Product newProduct = new Product(aName, aDescription);
+		Product newProduct = new Product(aName, aDescription, brandRepository.findById(brandId).get());
 
 		this.getProductRepository().save(newProduct);
 

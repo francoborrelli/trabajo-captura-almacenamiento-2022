@@ -61,25 +61,25 @@ public class ProductController {
 	/**
 	 * Endpoint para crear productos.
 	 * 
-	 * @param anProductRequestDTO dto que contiene la información del producto a crear.
+	 * @param aProductRequestDTO dto que contiene la información del producto a crear.
 	 * 
 	 */
 	@PostMapping("/products")
-	public void createProduct(@RequestBody ProductRequestDTO anProductRequestDTO) {
+	public void createProduct(@RequestBody ProductRequestDTO aProductRequestDTO) {
 
-		this.getProductsService().addProduct(anProductRequestDTO.name, anProductRequestDTO.description);
+		this.getProductsService().addProduct(aProductRequestDTO.name, aProductRequestDTO.description, aProductRequestDTO.brandId);
 	}
 
 	/**
 	 * Endpoint para crear productos.
 	 * 
-	 * @param anProductRequestDTO dto que contiene la información del producto a crear.
+	 * @param aProductRequestDTO dto que contiene la información del producto a crear.
 	 * 
 	 */
 	@PutMapping("/products")
-	public void editProduct(@RequestBody ProductRequestDTO anProductRequestDTO) {
+	public void editProduct(@RequestBody ProductRequestDTO aProductRequestDTO) {
 
-		this.getProductsService().editProduct(anProductRequestDTO.id, anProductRequestDTO.name);
+		this.getProductsService().editProduct(aProductRequestDTO.id, aProductRequestDTO.name);
 	}
 
 	/**

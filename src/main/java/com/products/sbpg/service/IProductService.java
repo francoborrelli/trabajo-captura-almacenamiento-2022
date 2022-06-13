@@ -37,9 +37,10 @@ public interface IProductService {
 	 * 
 	 * @param aName      	es el nombre del producto.
 	 * @param aDescription 	es el nombre de producto del nuevo producto.
+	 * @param brandId 	    es el identificador de la marca del producto.
 	 * @return un DTO que representa al producto recientemente creado.
 	 */
-	public ProductDTO addProduct(String aName, String aDescription);
+	public ProductDTO addProduct(String aName, String aDescription, long brandId);
 
 	/**
 	 * Edita el nombre de un producto.
