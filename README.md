@@ -6,6 +6,11 @@
 * Docker
 * Docker Compose
 
+## Pasos previos
+
+1. Generar los archivos de variables de entorno en la carpeta `env`. Se incluyen los archivos .dist a modo de referencia.
+2. Realizar el unzip del archivo `products.tsv.zip` en el directorio `src/main/resources`.
+
 ## Buildear imagen
 
 ```
@@ -18,7 +23,7 @@ docker-compose -f local.yml build
 docker-compose -f local.yml up -d
 ```
 
-## Endpoints
+## Endpoints API JAVA
 
 ### Listar Productos
 
