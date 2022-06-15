@@ -10,8 +10,6 @@ import com.products.sbpg.model.Product;
 import com.products.sbpg.repository.JPABrandRepository;
 import com.products.sbpg.repository.JPAProductRepository;
 
-import java.util.Scanner;
-import java.io.File; 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.nio.file.Files;
