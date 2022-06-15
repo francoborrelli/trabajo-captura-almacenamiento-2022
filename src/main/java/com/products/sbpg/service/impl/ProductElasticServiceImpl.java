@@ -53,7 +53,7 @@ public class ProductElasticServiceImpl implements IProductService {
 	// TODO: cambiar porque solo retorna primeros 100
 	public List<Product> findAll() {
 		return	StreamSupport
-			.stream(this.getProductRepository().findAll(PageRequest.of(0, 99)).spliterator(), false)
+			.stream(this.getProductRepository().findAll(PageRequest.of(0, 100)).getContent().spliterator(), false)
 			.collect(Collectors.toList());
 	}
 
