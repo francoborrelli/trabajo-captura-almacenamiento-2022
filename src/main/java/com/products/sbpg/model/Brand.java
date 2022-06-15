@@ -14,6 +14,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
+
 /**
  * Clase que representa a la entidad del marca.
  * 
@@ -37,6 +41,7 @@ public class Brand {
 	/**
 	 * Es el nombre de la marca.
 	 */
+	@Field(name = "name", type = FieldType.Text)
 	private String name;
 
 	/**

@@ -9,6 +9,7 @@ import java.util.Optional;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.products.sbpg.dto.DTOFactory;
@@ -22,12 +23,14 @@ import com.products.sbpg.service.IProductService;
  * Esta clase contiene la implementación de los servicios relacionados con los
  * productos.
  * 
- * @author Javier Bazzocco
+ * @author Borrelli Franco Martín
+ * @author Carbone José Ignacio
  *
  */
 @Service
 @Transactional
-public class ProductServiceImpl implements IProductService {
+@Qualifier("jpa")
+public class ProductJPAServiceImpl implements IProductService {
 
 	/**
 	 * Es el repositorio ligado a los productos.
@@ -65,10 +68,10 @@ public class ProductServiceImpl implements IProductService {
 	 * Agrega un nuevo producto.
 	 * 
 	 * @param aName      	es el nombre del producto.
-	 * @param aDescription 	es la descripción del nuevo producto.
+	 * @param aDescription 	es el nombre de producto del nuevo producto.
+	 * @param brandId 	    es el identificador de la marca del producto.
 	 * @return un DTO que representa al producto recientemente creado.
 	 */
-	@Override
 	public ProductDTO addProduct(String aName, String aDescription, long brandId) {
 
 		Product newProduct = new Product(aName, aDescription, brandRepository.findById(brandId).get());
@@ -102,7 +105,6 @@ public class ProductServiceImpl implements IProductService {
 	 * @param id   es el identificador del producto.
 	 * @param name es el nuevo nombre.
 	 */
-	@Override
 	public void editProduct(long id, String name) {
 		try {
 			Product product = this.getProductRepository().findById(id).get();

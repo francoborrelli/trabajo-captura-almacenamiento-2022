@@ -31,22 +31,4 @@ public interface IProductService {
 	 * @return el producto con el id indicado
 	 */
 	public Optional<Product> findById(long anId);
-
-	/**
-	 * Agrega un nuevo producto.
-	 * 
-	 * @param aName      	es el nombre del producto.
-	 * @param aDescription 	es el nombre de producto del nuevo producto.
-	 * @param brandId 	    es el identificador de la marca del producto.
-	 * @return un DTO que representa al producto recientemente creado.
-	 */
-	public ProductDTO addProduct(String aName, String aDescription, long brandId);
-
-	/**
-	 * Edita el nombre de un producto.
-	 * 
-	 * @param id   es el identificador del producto.
-	 * @param name es el nuevo nombre.
-	 */
-	public void editProduct(long id, String name);
 }

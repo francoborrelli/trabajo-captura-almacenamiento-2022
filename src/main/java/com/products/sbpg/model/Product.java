@@ -13,6 +13,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
+
 /**
  * Clase que representa a la entidad del producto.
  * 
@@ -24,6 +28,7 @@ import javax.persistence.Version;
 
 @Entity(name = "Product")
 @Table(name = "products")
+@Document(indexName = "products")
 public class Product {
 
 	/**
@@ -36,11 +41,13 @@ public class Product {
 	/**
 	 * Es el nombre del producto.
 	 */
+	@Field(name = "name", type = FieldType.Text)
 	private String name;
 
 	/**
 	 * Es la descripción del producto.
 	 */
+	@Field(name = "description", type = FieldType.Text)
 	private String description;
 
 	/**
@@ -48,6 +55,7 @@ public class Product {
 	 */
    	@ManyToOne
     @JoinColumn(name="brand_id", nullable=false)
+	@Field(type = FieldType.Nested)
     private Brand brand;
 
 	/**
