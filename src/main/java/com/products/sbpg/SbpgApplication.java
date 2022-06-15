@@ -2,6 +2,8 @@ package com.products.sbpg;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.slf4j.*;
 
 /**
@@ -12,14 +14,14 @@ import org.slf4j.*;
  *
  */
 @SpringBootApplication
+@EnableElasticsearchRepositories(basePackages = "com.products.sbpg.search")
+@EnableJpaRepositories("com.products.sbpg.repository")
 public class SbpgApplication {
 	// logger
 	private static final Logger logger = LoggerFactory.getLogger(SbpgApplication.class);
 
 	public static void main(String[] args) {
 		SpringApplication.run(SbpgApplication.class, args);
-		logger.info("Starting migrations...");
-		logger.info("Finished migrations...");
 		logger.info("Application initialized...");
 	}
 }
