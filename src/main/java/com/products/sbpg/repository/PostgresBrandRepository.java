@@ -20,7 +20,7 @@ import com.products.sbpg.model.Brand;
  *  
  */
 @Repository
-public interface JPABrandRepository extends JpaRepository<Brand, Long> {
+public interface PostgresBrandRepository extends JpaRepository<Brand, Long> {
 
 	/**
 	 * Recupera una marca por su nombre.

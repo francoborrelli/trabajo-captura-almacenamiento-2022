@@ -15,8 +15,8 @@ import org.springframework.stereotype.Service;
 import com.products.sbpg.dto.DTOFactory;
 import com.products.sbpg.dto.ProductDTO;
 import com.products.sbpg.model.Product;
-import com.products.sbpg.repository.JPAProductRepository;
-import com.products.sbpg.repository.JPABrandRepository;
+import com.products.sbpg.repository.PostgresProductRepository;
+import com.products.sbpg.repository.PostgresBrandRepository;
 import com.products.sbpg.service.IProductService;
 
 /**
@@ -29,20 +29,20 @@ import com.products.sbpg.service.IProductService;
  */
 @Service
 @Transactional
-@Qualifier("jpa")
-public class ProductJPAServiceImpl implements IProductService {
+@Qualifier("postgres")
+public class PostgresProductServiceImpl implements IProductService {
 
 	/**
 	 * Es el repositorio ligado a los productos.
 	 */
 	@Inject
-	private JPAProductRepository productRepository;
+	private PostgresProductRepository productRepository;
 
 	/**
 	 * Es el repositorio ligado a las marcas.
 	 */
 	@Inject
-	private JPABrandRepository brandRepository;
+	private PostgresBrandRepository brandRepository;
 
 	/**
 	 * Es el objeto encargado de crear los DTOs.
@@ -86,7 +86,7 @@ public class ProductJPAServiceImpl implements IProductService {
 	 * 
 	 * @return el repositorio de productos.
 	 */
-	public JPAProductRepository getProductRepository() {
+	public PostgresProductRepository getProductRepository() {
 		return this.productRepository;
 	}
 

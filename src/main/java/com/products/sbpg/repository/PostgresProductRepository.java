@@ -16,7 +16,7 @@ import com.products.sbpg.model.Product;
  *  
  */
 @Repository
-public interface JPAProductRepository extends JpaRepository<Product, Long> {
+public interface PostgresProductRepository extends JpaRepository<Product, Long> {
 
 	/**
 	 * Recupera un producto por su nombre.

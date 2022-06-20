@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 import com.products.sbpg.model.Brand;
 import com.products.sbpg.model.Product;
-import com.products.sbpg.repository.JPABrandRepository;
-import com.products.sbpg.repository.JPAProductRepository;
+import com.products.sbpg.repository.PostgresBrandRepository;
+import com.products.sbpg.repository.PostgresProductRepository;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -21,10 +21,10 @@ public class SeedRunner implements CommandLineRunner {
     private static final Logger logger = LoggerFactory.getLogger(SeedRunner.class);
     
 
-    private final JPABrandRepository brandRepository;
-    private final JPAProductRepository productRepository;
+    private final PostgresBrandRepository brandRepository;
+    private final PostgresProductRepository productRepository;
 
-    public SeedRunner(JPABrandRepository brandRepository, JPAProductRepository productRepository) {
+    public SeedRunner(PostgresBrandRepository brandRepository, PostgresProductRepository productRepository) {
         this.brandRepository = brandRepository;
         this.productRepository = productRepository;
     }

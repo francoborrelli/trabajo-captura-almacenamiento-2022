@@ -32,7 +32,7 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping("/api/jpa")
-public class JPAProductController implements IProductController {
+public class PostgresProductController implements IProductController {
     // for logging
 	private static final Logger logger = LoggerFactory.getLogger(SbpgApplication.class);
 	
@@ -40,7 +40,7 @@ public class JPAProductController implements IProductController {
 	 * Es el servicio relacionado con los productos.
 	 */
 	@Inject
-	@Qualifier("jpa")
+	@Qualifier("postgres")
 	private IProductService productsService;
 
     @GetMapping("/products")
@@ -55,8 +55,8 @@ public class JPAProductController implements IProductController {
         return this.productsService.findById(productId);
     }
 
-	private IProductService getProductsService() {
-		return this.productsService;
-	}
+	// private IProductService getProductsService() {
+	// 	return this.productsService;
+	// }
 
 }

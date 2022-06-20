@@ -31,7 +31,7 @@ import com.products.sbpg.service.IProductService;
 @Service
 @Transactional
 @Qualifier("elastic")
-public class ProductElasticServiceImpl implements IProductService {
+public class ElasticProductServiceImpl implements IProductService {
 
 	/**
 	 * Es el repositorio ligado a los productos.
