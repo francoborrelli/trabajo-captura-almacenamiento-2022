@@ -43,10 +43,8 @@ public class SeedRunner implements CommandLineRunner {
             while((line = bufferedReader.readLine()) != null)
             {
                 String[] item = line.split("\\t");
-                if (item.length == 3) {
-                    Brand brand = brandRepository.findOrCreate(item[2]);
-                    productRepository.save(new Product(item[0], item[1], brand));
-                }
+                Brand brand = brandRepository.findOrCreate(item[2]);
+                productRepository.save(new Product(item[1], item[3], brand));
                 lineCount++;
                 if(lineCount % 10000 == 0) {
                     logger.info("Cargando datos, completado al {}%", String.format("%.02f", 100 * lineCount / (float) totalLines));
