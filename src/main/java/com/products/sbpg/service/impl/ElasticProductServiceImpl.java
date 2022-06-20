@@ -45,15 +45,15 @@ public class ElasticProductServiceImpl implements IProductService {
 	@Inject
 	private DTOFactory dtoFactory;
 
+
 	/**
 	 * Recupera todos los productos
 	 * 
 	 * @return Lista de Product.
 	 */
-	// TODO: cambiar porque solo retorna primeros 100
-	public List<Product> findAll() {
+	public List<Product> search(String aTerm) {
 		return	StreamSupport
-			.stream(this.getProductRepository().findAll(PageRequest.of(0, 100)).getContent().spliterator(), false)
+			.stream(this.getProductRepository().findByNameOrDescription(aTerm, aTerm, PageRequest.of(0, 100)).getContent().spliterator(), false)
 			.collect(Collectors.toList());
 	}
 

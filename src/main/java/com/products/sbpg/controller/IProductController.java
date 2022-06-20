@@ -11,7 +11,7 @@ public interface IProductController {
 	 * Endpoint para recuperar todos los productos.
 	 * 
 	 */
-    List<Product> getAllProducts();
+	List<Product> searchProducts(String aTerm);
 
     /**
 	 * Endpoint para crear productos.

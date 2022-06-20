@@ -41,10 +41,9 @@ public class ElasticProductController implements IProductController {
 	@Qualifier("elastic")
 	private IProductService productsService;
 
-    @GetMapping("/products")
-	public List<Product> getAllProducts() {
-		logger.info("listing all products...");
-		return this.productsService.findAll();
+	@GetMapping("/products/search/{term}")
+	public List<Product> searchProducts(@PathVariable(value = "term") String aTerm) {
+		return this.productsService.search(aTerm);
 	}
 	
   	@GetMapping("/products/{id}")

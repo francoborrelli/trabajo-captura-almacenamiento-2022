@@ -23,7 +23,7 @@ public interface IProductService {
 	 * 
 	 * @return Lista de ProductDTO.
 	 */
-	public List<Product> findAll();
+	public List<Product> search(String aTerm);
 
 	/**
 	 * Recupera un product

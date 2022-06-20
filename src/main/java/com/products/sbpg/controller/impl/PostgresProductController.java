@@ -9,8 +9,6 @@ import javax.inject.Inject;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,7 +29,7 @@ import java.util.Optional;
  *
  */
 @RestController
-@RequestMapping("/api/jpa")
+@RequestMapping("/api/postgres")
 public class PostgresProductController implements IProductController {
     // for logging
 	private static final Logger logger = LoggerFactory.getLogger(SbpgApplication.class);
@@ -43,10 +41,9 @@ public class PostgresProductController implements IProductController {
 	@Qualifier("postgres")
 	private IProductService productsService;
 
-    @GetMapping("/products")
-	public List<Product> getAllProducts() {
-		logger.info("listing all products...");
-		return this.productsService.findAll();
+	@GetMapping("/products/search/{term}")
+	public List<Product> searchProducts(@PathVariable(value = "term") String aTerm) {
+		return this.productsService.search(aTerm);
 	}
 	
   @GetMapping("/products/{id}")

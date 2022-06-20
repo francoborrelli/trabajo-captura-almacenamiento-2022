@@ -55,8 +55,8 @@ public class PostgresProductServiceImpl implements IProductService {
 	 * 
 	 * @return Lista de Product.
 	 */
-	public List<Product> findAll() {
-		return this.getProductRepository().findAll();
+	public List<Product> search(String aTerm) {
+		return this.getProductRepository().search(aTerm);
 	}
 
 

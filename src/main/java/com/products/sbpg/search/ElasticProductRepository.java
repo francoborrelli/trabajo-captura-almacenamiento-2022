@@ -28,6 +28,5 @@ public interface ElasticProductRepository extends ElasticsearchRepository<Produc
 	 */
 	public Product findByName(String aName);
 
-	@Override
-	public Page<Product> findAll(Pageable pageable);
+	public Page<Product> findByNameOrDescription(String aName, String aDescription, Pageable pageable);
 }

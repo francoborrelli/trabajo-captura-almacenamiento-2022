@@ -27,7 +27,7 @@ public class BrandDTO {
 	/**
 	 * Es la versión de la marca.
 	 */
-	private int version;
+	// private int version;
 
 	/**
 	 * Constructor.
@@ -83,17 +83,17 @@ public class BrandDTO {
 	 * 
 	 * @return la versión de la marca.
 	 */
-	public int getVersion() {
-		return this.version;
-	}
+	// public int getVersion() {
+	// 	return this.version;
+	// }
 
 	/**
 	 * Setter.
 	 * 
 	 * @param version es la versión de la marca.
 	 */
-	private void setVersion(int version) {
-		this.version = version;
-	}
+	// private void setVersion(int version) {
+	// 	this.version = version;
+	// }
 
 }
