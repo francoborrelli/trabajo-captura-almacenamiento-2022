@@ -4,6 +4,8 @@
  */
 package com.products.sbpg.dto;
 
+import com.products.sbpg.model.Brand;
+
 /**
  * Las instancias de esta clase se utilizan para transferir información de las
  * marcas.
@@ -34,12 +36,21 @@ public class BrandDTO {
 	 * 
 	 * @param anId       	es el identificador de la marca.
 	 * @param aName 		es el nombre de la marca.
-	 * @param aVersion   	es la versión de la marca.
 	 */
-	public BrandDTO(long anId, String aName, int aVersion) {
+	public BrandDTO(Brand aBrand) {
+		this.setId(aBrand.getId());
+		this.setName(aBrand.getName());
+	}
+
+	/**
+	 * Constructor.
+	 * 
+	 * @param anId       	es el identificador de la marca.
+	 * @param aName 		es el nombre de la marca.
+	 */
+	public BrandDTO(long anId, String aName) {
 		this.setId(anId);
 		this.setName(aName);
-		this.setVersion(aVersion);
 	}
 
 	/**

@@ -7,6 +7,7 @@ import org.slf4j.*;
 import javax.inject.Inject;
 
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.util.StopWatch;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.products.sbpg.SbpgApplication;
 import com.products.sbpg.controller.IProductController;
+import com.products.sbpg.dto.ProductSearchDTO;
 import com.products.sbpg.exception.ResourceNotFoundException;
 import com.products.sbpg.model.Product;
 import com.products.sbpg.service.IProductService;
@@ -42,8 +44,12 @@ public class PostgresProductController implements IProductController {
 	private IProductService productsService;
 
 	@GetMapping("/products/search/{term}")
-	public List<Product> searchProducts(@PathVariable(value = "term") String aTerm) {
-		return this.productsService.search(aTerm);
+	public ProductSearchDTO searchProducts(@PathVariable(value = "term") String aTerm) {
+		StopWatch watch = new StopWatch();
+		watch.start();
+		List<Product> products =this.productsService.search(aTerm);
+		watch.stop();
+		return new ProductSearchDTO(products, watch.getLastTaskTimeMillis());
 	}
 	
   @GetMapping("/products/{id}")

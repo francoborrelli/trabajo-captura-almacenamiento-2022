@@ -4,6 +4,8 @@
  */
 package com.products.sbpg.dto;
 
+import com.products.sbpg.model.Product;
+
 /**
  * Las instancias de esta clase se utilizan para transferir información de los
  * productos.
@@ -30,11 +32,6 @@ public class ProductDTO {
 	private String description;
 
 	/**
-	 * Es la versión del producto.
-	 */
-	private int version;
-
-	/**
 	 * Es la marca del producto.
 	 */
 	private BrandDTO brand;
@@ -42,17 +39,13 @@ public class ProductDTO {
 	/**
 	 * Constructor.
 	 * 
-	 * @param anId       	es el identificador del producto.
-	 * @param aName 		es el nombre del producto.
-	 * @param aDescription  es la descripción del producto.
-	 * @param aVersion   	es la versión del producto.
-	 * @param brand   		es la marca del producto.
+	 * @param aProduct     es el producto.
 	 */
-	public ProductDTO(long anId, String aName, String aDescription, int aVersion) {
-		this.setId(anId);
-		this.setName(aName);
-		this.setDescription(aDescription);
-		this.setVersion(aVersion);
+	public ProductDTO(Product aProduct) {
+		this.setId(aProduct.getId());
+		this.setName(aProduct.getName());
+		this.setDescription(aProduct.getDescription());
+		this.setBrand(new BrandDTO(aProduct.getBrand()));
 	}
 
 	/**
@@ -76,7 +69,7 @@ public class ProductDTO {
 	/**
 	 * Getter.
 	 * 
-	 * @return el username de este producto.
+	 * @return la descripcion de este producto.
 	 */
 	public String getDescription() {
 		return this.description;
@@ -90,6 +83,25 @@ public class ProductDTO {
 	public void setDescription(String aDescription) {
 		this.description = aDescription;
 	}
+
+	/**
+	 * Getter.
+	 * 
+	 * @return la marca de este producto.
+	 */
+	public BrandDTO getBrand() {
+		return this.brand;
+	}
+
+	/**
+	 * Setter.
+	 * 
+	 * @param aBrand es la marca de este producto.
+	 */
+	public void setBrand(BrandDTO aBrand) {
+		this.brand = aBrand;
+	}
+
 
 	/**
 	 * Getter.
@@ -108,23 +120,4 @@ public class ProductDTO {
 	public void setName(String aName) {
 		this.name = aName;
 	}
-
-	/**
-	 * Getter.
-	 * 
-	 * @return la versión del producto.
-	 */
-	public int getVersion() {
-		return this.version;
-	}
-
-	/**
-	 * Setter.
-	 * 
-	 * @param version es la versión del producto.
-	 */
-	private void setVersion(int version) {
-		this.version = version;
-	}
-
 }

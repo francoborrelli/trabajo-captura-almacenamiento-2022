@@ -26,7 +26,7 @@ public class DTOFactory {
 	 * @return un DTO con los datos básicos.
 	 */
 	public ProductDTO createProductDTO(Product aProduct) {
-		return new ProductDTO(aProduct.getId(), aProduct.getName(), aProduct.getDescription(), aProduct.version);
+		return new ProductDTO(aProduct);
 	}
 
 }

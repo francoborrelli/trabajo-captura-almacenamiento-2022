@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.products.sbpg.model.Product;
+import com.products.sbpg.dto.ProductSearchDTO;
 import com.products.sbpg.exception.ResourceNotFoundException;
 
 public interface IProductController {
@@ -11,7 +12,7 @@ public interface IProductController {
 	 * Endpoint para recuperar todos los productos.
 	 * 
 	 */
-	List<Product> searchProducts(String aTerm);
+	ProductSearchDTO searchProducts(String aTerm);
 
     /**
 	 * Endpoint para crear productos.
