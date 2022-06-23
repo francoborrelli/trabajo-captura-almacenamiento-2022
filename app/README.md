@@ -26,8 +26,15 @@ Al levantar los contenedores por primera vez, se inicializarán las bases de dat
 
 Una vez inicializado el contenedor de `api` comenzará la descarga la importación de productos. El avance y finalización de este proceso puede seguirse viendo los logs de dicho contenedor.
 
+
 ```
 docker-compose logs -f api
+```
+
+A su vez, se puede seguir la importación de datos a Elastic Search viendo los logs del contenedor de logstash:
+
+```
+docker-compose logs -f logstash
 ```
 
 ## Endpoints API
