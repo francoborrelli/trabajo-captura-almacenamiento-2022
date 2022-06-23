@@ -32,13 +32,16 @@ build/
 ### VS Code & Mac ###
 .vscode/
 .DS_Store
-
 .__MACOSX
 
-
+# Env
 .env
 
 .m2
 
+### Archivos para importación
 *.csv
 *.tsv
+
+### Benchmark node modules
+node_modules
