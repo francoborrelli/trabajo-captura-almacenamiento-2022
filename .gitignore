@@ -45,3 +45,5 @@ build/
 
 ### Benchmark node modules
 node_modules
+
+benchmark/output

@@ -16,6 +16,10 @@ Antes de correr el benchmark es necesario asegurarse de que existan y estén cor
 docker-compose up -d
 ```
 
+### 3. Ver resultados
+
+En la carpeta `output` se generará el archivo results.json, donde se muestran los resultados obtenidos por cada consulta realizada.
+
 ## CLEAN UP
 
 Para eliminar contenedores y borrar volumenes asociados a este proyecto se debe correr:

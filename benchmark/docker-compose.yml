@@ -3,6 +3,8 @@ services:
   benchmark:
     restart: always
     container_name: products_benchmark
+    volumes:
+      - ./output:/app/output/
     build:
       context: .
       dockerfile: ./docker/Dockerfile
