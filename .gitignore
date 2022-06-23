@@ -33,6 +33,8 @@ build/
 .vscode/
 .DS_Store
 
+.__MACOSX
+
 
 .env
 

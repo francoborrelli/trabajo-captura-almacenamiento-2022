@@ -8,3 +8,6 @@ RUN /usr/share/logstash/bin/logstash-plugin install logstash-filter-mutate
 
 # copy lib database jdbc jars
 COPY ./docker/local/logstash/postgresql-42.2.8.jar /usr/share/logstash/logstash-core/lib/jars/postgresql.jar
+
+# copy logstash configuration
+COPY ./docker/local/logstash/logstash.conf /usr/share/logstash/pipeline/logstash.conf

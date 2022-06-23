@@ -67,8 +67,6 @@ services:
     container_name: logstash
     env_file:
       - ./env/.env.logstash
-    volumes:
-      - ./config/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
     ports:
       - '5000:5000'
     depends_on:
@@ -89,4 +87,3 @@ volumes:
   esdata:
   postgres-data:
     driver: local
-

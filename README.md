@@ -1,74 +1,20 @@
-
 # Trabajo Final - Captura y Almacenamiento de la Información 2022
+
+## Introducción
+
+El objetivo de este proyecto es realizar una comparativa de performace en búsquedas full-text utilizando Postgres y Elastic Search.
 
 ## Requisitos
 
-* Docker
-* Docker Compose
+- Docker
+- Docker Compose
 
-## Pasos previos
+## Estructura del proyecto
 
-1. Generar los archivos de variables de entorno en la carpeta `env`. Se incluyen los archivos .dist a modo de referencia.
-2. Realizar el unzip del archivo `products.tsv.zip` en el directorio `src/main/resources`.
+El proyecto está compuesto por dos aplicaciones independientes entre si:
 
-## Buildear imagen
+- En la carpeta `app` se encuentra el código fuente para levantar los servicios de las bases de datos y la api de productos.
 
-```
-docker-compose -f local.yml build
-```
+- En la carpeta `benchmark` se encuentra el código fuente las pruebas para analizar la performance de las consultas sobre elastic y postgres.
 
-## Levantar proyecto
-
-```
-docker-compose -f local.yml up -d
-```
-
-## Endpoints API JAVA
-
-### Listar Productos
-
-```
-GET localhost:8080/api/v1/products
-```
-
-### Get Producto
-
-```
-GET localhost:8080/api/v1/products/{id}
-```
-
-### Create Product
-
-```
-POST localhost:8080/api/v1/products
-```
-
-Body:
-
-```json
-{
-  "name": "test",
-  "description": "test description",
-}
-```
-
-### Update Todo
-
-```
-PUT localhost:8080/api/v1/products/{id}
-```
-
-Body:
-
-```json
-{
-  "name": "test",
-  "description": "updated description",
-}
-```
-
-### Delete Todo
-
-```
-DELETE localhost:8080/api/v1/products/{id}
-```
+En cada carpeta se incluye un readme con las instrucciones para levantar cada uno de los entornos.

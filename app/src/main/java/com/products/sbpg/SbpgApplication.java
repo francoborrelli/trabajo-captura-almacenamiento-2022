@@ -7,9 +7,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import com.products.sbpg.benchmark.ProductsBenchmark;
 
-import org.openjdk.jmh.runner.Runner;
-import org.openjdk.jmh.runner.options.Options;
-import org.openjdk.jmh.runner.options.OptionsBuilder;
 import org.slf4j.*;
 
 /**
@@ -28,16 +25,6 @@ public class SbpgApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SbpgApplication.class, args);
-		logger.info("Application initialized...");
-
-		try {
-			Options opt = new OptionsBuilder()
-			.include(ProductsBenchmark.class.getSimpleName())
-			.forks(2)
-			.build();
-        	new Runner(opt).run();
-		} catch (Exception e) {
-		}
-
+		logger.info("Aplicación inicializada...");
 	}
 }
