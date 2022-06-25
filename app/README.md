@@ -16,7 +16,12 @@ unzip src/main/resources/products.tsv.zip -d src/main/resources
 docker-compose build
 ```
 
-### 3. Levantar proyecto
+### 3. Crear network compartida de docker
+```
+docker network create app-network
+```
+
+### 4. Levantar proyecto
 
 ```
 docker-compose up -d
