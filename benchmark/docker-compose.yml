@@ -4,8 +4,15 @@ services:
     restart: always
     container_name: products_benchmark
     volumes:
+      - ./input:/app/input/
       - ./output:/app/output/
     build:
       context: .
       dockerfile: ./docker/Dockerfile
     command: 'node index.js'
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    external: true

@@ -20,9 +20,11 @@ services:
     depends_on:
       - postgres
       - elasticsearch
+    networks:
+      - app-network
 
   postgres:
-    image: postgres
+    image: postgres:14.4
     container_name: products_postgres
     ports:
       - '5432:5432'
@@ -35,6 +37,8 @@ services:
       retries: 5
     volumes:
       - postgres-data:/var/lib/postgresql/data
+    networks:
+      - app-network
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.2.0
@@ -59,6 +63,8 @@ services:
     ports:
       - 9300:9300
       - 9200:9200
+    networks:
+      - app-network
 
   logstash:
     build:
@@ -72,6 +78,8 @@ services:
     depends_on:
       - postgres
       - elasticsearch
+    networks:
+      - app-network
 
   # kibana:
   #   image: docker.elastic.co/kibana/kibana:7.2.0
@@ -87,3 +95,7 @@ volumes:
   esdata:
   postgres-data:
     driver: local
+
+networks:
+  app-network:
+    external: true
