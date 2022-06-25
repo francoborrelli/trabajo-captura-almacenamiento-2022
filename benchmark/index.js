@@ -23,7 +23,7 @@ const showMessage = (message) => {
 const getRoutes = () => {
   const rawdata = fs.readFileSync('./input/words.json');
   const { results: words } = JSON.parse(rawdata);
-  return words.slice(0, 20).reduce((prev, curr) => {
+  return words.reduce((prev, curr) => {
     prev[curr.word] = curr.word;
     return prev;
   }, {});
