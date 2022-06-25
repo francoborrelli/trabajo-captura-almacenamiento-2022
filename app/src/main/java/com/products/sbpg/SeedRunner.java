@@ -32,8 +32,8 @@ public class SeedRunner implements CommandLineRunner {
     public void run(String... args) throws Exception {
         this.brandRepository.deleteAll();
         this.brandRepository.flush();
-        this.PostgresProductRepository.deleteAll();
-        this.PostgresProductRepository.flush();
+        this.productRepository.deleteAll();
+        this.productRepository.flush();
 
         ClassLoader classLoader = getClass().getClassLoader();
         String path = classLoader.getResource("products.tsv").getFile();

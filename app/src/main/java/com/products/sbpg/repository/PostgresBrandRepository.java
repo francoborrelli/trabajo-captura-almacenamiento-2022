@@ -5,7 +5,6 @@ package com.products.sbpg.repository;
 
 import java.util.Optional;
 
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,7 +16,7 @@ import com.products.sbpg.model.Brand;
  *
  * @author Borrelli Franco Martín
  * @author Carbone José Ignacio
- *  
+ * 
  */
 @Repository
 public interface PostgresBrandRepository extends JpaRepository<Brand, Long> {
@@ -36,9 +35,8 @@ public interface PostgresBrandRepository extends JpaRepository<Brand, Long> {
 	 * @param aName es el nombre de la marca.
 	 * @return la marca con el nombre dado.
 	 */
-    @Transactional
-    public default Brand findOrCreate(String aName) {
-		return this.findOneByName(aName).orElseGet(() ->this.saveAndFlush(new Brand(aName)));
-    }
+	@Transactional
+	public default Brand findOrCreate(String aName) {
+		return this.findOneByName(aName).orElseGet(() -> this.saveAndFlush(new Brand(aName)));
+	}
 }
-
