@@ -19,7 +19,6 @@ import java.nio.file.Paths;
 public class SeedRunner implements CommandLineRunner {
 
     private static final Logger logger = LoggerFactory.getLogger(SeedRunner.class);
-    
 
     private final PostgresBrandRepository brandRepository;
     private final PostgresProductRepository productRepository;
@@ -31,6 +30,11 @@ public class SeedRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        this.brandRepository.deleteAll();
+        this.brandRepository.flush();
+        this.PostgresProductRepository.deleteAll();
+        this.PostgresProductRepository.flush();
+
         ClassLoader classLoader = getClass().getClassLoader();
         String path = classLoader.getResource("products.tsv").getFile();
 
@@ -59,4 +63,3 @@ public class SeedRunner implements CommandLineRunner {
         logger.info(" -------------------------------------");
     }
 }
-
