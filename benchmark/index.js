@@ -89,10 +89,10 @@ const runBenchmark = () => {
   showMessage('Comenzando prueba');
   const routes = getRoutes();
   apiBenchmark.measure(services, routes, benchmarkOptions, function (err, results) {
-    showMessage('Prueba finalizada');
     saveJSONResult(results);
     saveDetailsHTMLResult(results);
     getGeneralStats(results);
+    showMessage('Prueba finalizada');
   });
 };
 
