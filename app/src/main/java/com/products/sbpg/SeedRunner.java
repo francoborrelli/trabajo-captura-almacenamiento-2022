@@ -34,42 +34,42 @@ public class SeedRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        // double sampleSize = SampleSize.valueOf(sampleSizeConfig).getSizePercentage();
+        double sampleSize = SampleSize.valueOf(sampleSizeConfig).getSizePercentage();
 
-        // logger.info(" -------------------------------------");
-        // logger.info("SAMPLE SIZE: " + sampleSizeConfig + " (" + sampleSize + ")");
-        // logger.info(" -------------------------------------");
+        logger.info(" -------------------------------------");
+        logger.info("SAMPLE SIZE: " + sampleSizeConfig + " (" + sampleSize + ")");
+        logger.info(" -------------------------------------");
 
-        // this.brandRepository.deleteAll();
-        // this.brandRepository.flush();
-        // this.productRepository.deleteAll();
-        // this.productRepository.flush();
+        this.brandRepository.deleteAll();
+        this.brandRepository.flush();
+        this.productRepository.deleteAll();
+        this.productRepository.flush();
 
-        // ClassLoader classLoader = getClass().getClassLoader();
-        // String path = classLoader.getResource("products.tsv").getFile();
+        ClassLoader classLoader = getClass().getClassLoader();
+        String path = classLoader.getResource("products.tsv").getFile();
 
-        // int lineCount = 0;
-        // String line;
+        int lineCount = 0;
+        String line;
 
-        // int totalLines = (int) Files.lines(Paths.get(path)).count();
-        // logger.info(" -------------------------------------");
-        // logger.info("| COMENZANDO IMPORTACIÓN DE PRODUCTOS |");
-        // logger.info(" -------------------------------------");
+        int totalLines = (int) Files.lines(Paths.get(path)).count();
+        logger.info(" -------------------------------------");
+        logger.info("| COMENZANDO IMPORTACIÓN DE PRODUCTOS |");
+        logger.info(" -------------------------------------");
 
-        // try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path), 65536);) {
-        //     while ((line = bufferedReader.readLine()) != null && lineCount  <= totalLines * sampleSize) {
-        //         String[] item = line.split("\\t", -1);
-        //         Brand brand = brandRepository.findOrCreate(item[2]);
-        //         productRepository.save(new Product(item[1], item[3], brand));
-        //         lineCount++;
-        //         if (lineCount % 10000 == 0) {
-        //             logger.info("Cargando datos, completado al {}%",
-        //                     String.format("%.02f", (100 * lineCount) / (totalLines * sampleSize)));
-        //         }
-        //     }
-        // }
-        // logger.info(" -------------------------------------");
-        // logger.info("| IMPORTACIÓN DE PRODUCTOS FINALIZADA |");
-        // logger.info(" -------------------------------------");
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path), 65536);) {
+            while ((line = bufferedReader.readLine()) != null && lineCount  <= totalLines * sampleSize) {
+                String[] item = line.split("\\t", -1);
+                Brand brand = brandRepository.findOrCreate(item[2]);
+                productRepository.save(new Product(item[1], item[3], brand));
+                lineCount++;
+                if (lineCount % 10000 == 0) {
+                    logger.info("Cargando datos, completado al {}%",
+                            String.format("%.02f", (100 * lineCount) / (totalLines * sampleSize)));
+                }
+            }
+        }
+        logger.info(" -------------------------------------");
+        logger.info("| IMPORTACIÓN DE PRODUCTOS FINALIZADA |");
+        logger.info(" -------------------------------------");
     }
 }
