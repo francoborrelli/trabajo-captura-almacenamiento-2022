@@ -71,7 +71,7 @@ public class PostgresProductServiceImpl implements IProductService {
 	 */
 	public List<Product> searchByProductOnly(String aTerm) {
 		return StreamSupport
-		.stream(this.getProductRepository().search(aTerm, PageRequest.of(0, 100)).getContent().spliterator(), false)
+		.stream(this.getProductRepository().searchByProductOnly(aTerm, PageRequest.of(0, 100)).getContent().spliterator(), false)
 		.collect(Collectors.toList());
 	}
 

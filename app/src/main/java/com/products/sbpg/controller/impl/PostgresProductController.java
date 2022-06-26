@@ -56,7 +56,7 @@ public class PostgresProductController implements IProductController {
 	public ProductSearchDTO searchProductsOnlyByProducts(@PathVariable(value = "term") String aTerm) {
 		StopWatch watch = new StopWatch();
 		watch.start();
-		List<Product> products = this.productsService.search(aTerm);
+		List<Product> products = this.productsService.searchByProductOnly(aTerm);
 		watch.stop();
 		return new ProductSearchDTO(products, watch.getLastTaskTimeMillis());
 	}
