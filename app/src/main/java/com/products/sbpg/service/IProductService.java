@@ -19,11 +19,19 @@ import com.products.sbpg.model.Product;
  */
 public interface IProductService {
 	/**
-	 * Recupera todos los productos
+	 * Recupera los productos mediante full text search
 	 * 
 	 * @return Lista de ProductDTO.
 	 */
 	public List<Product> search(String aTerm);
+
+	/**
+	 * Recupera los productos mediante full text search solo fijandose en los campos de producto
+	 * 
+	 * @return Lista de ProductDTO.
+	 */
+	public List<Product> searchByProductOnly(String aTerm);
+
 
 	/**
 	 * Recupera un product

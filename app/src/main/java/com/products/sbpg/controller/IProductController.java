@@ -9,10 +9,16 @@ import com.products.sbpg.exception.ResourceNotFoundException;
 
 public interface IProductController {
     /**
-	 * Endpoint para recuperar todos los productos.
+	 * Endpoint para recuperar los productos por full text search.
 	 * 
 	 */
 	ProductSearchDTO searchProducts(String aTerm);
+
+	/**
+	 * Endpoint para recuperar los productos por full text search solo fijandose en los campos de producto.
+	 * 
+	 */
+	ProductSearchDTO searchProductsOnlyByProducts(String aTerm);
 
     /**
 	 * Endpoint para crear productos.
