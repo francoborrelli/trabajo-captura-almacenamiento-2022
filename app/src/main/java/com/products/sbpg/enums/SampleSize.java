@@ -1,6 +1,6 @@
-package com.products.sbpg;
+package com.products.sbpg.enums;
 
-enum SampleSize {
+public enum SampleSize {
     TINY(0.1), SMALL(0.25), MEDIUM(0.5), LARGE(0.75), FULL(1);
 
     private double sizePercentage;

@@ -6,6 +6,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Value;
 
+import com.products.sbpg.enums.SampleSize;
 import com.products.sbpg.model.Brand;
 import com.products.sbpg.model.Product;
 import com.products.sbpg.repository.PostgresBrandRepository;
@@ -57,7 +58,7 @@ public class SeedRunner implements CommandLineRunner {
         logger.info(" -------------------------------------");
 
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path), 65536);) {
-            while ((line = bufferedReader.readLine()) != null && lineCount  <= totalLines * sampleSize) {
+            while ((line = bufferedReader.readLine()) != null && lineCount <= totalLines * sampleSize) {
                 String[] item = line.split("\\t", -1);
                 Brand brand = brandRepository.findOrCreate(item[2]);
                 productRepository.save(new Product(item[1], item[3], brand));
