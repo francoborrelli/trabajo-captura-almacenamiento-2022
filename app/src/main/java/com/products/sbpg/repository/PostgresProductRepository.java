@@ -42,4 +42,13 @@ public interface PostgresProductRepository extends JpaRepository<Product, Long> 
 	@Query(nativeQuery = true, value="SELECT * FROM products p JOIN brands b ON b.id = p.brand_id WHERE p.tsvector_search @@ tsquery(:aTerm) OR b.tsvector_search @@ tsquery(:aTerm)") 
 	Page<Product> search(@Param("aTerm") String aTerm, Pageable pageable);
 
+	/**
+	 * Recupera todos los producto que matchean con aTerm usando full-text search
+	 * 
+	 * @param aTerm es el termino a utilizar en la búsqueda
+	 * @return una lista de productos
+	 */
+	@Query(nativeQuery = true, value="SELECT * FROM products p WHERE p.tsvector_search @@ tsquery(:aTerm)") 
+	Page<Product> searchByProductOnly(@Param("aTerm") String aTerm, Pageable pageable);
+
 }

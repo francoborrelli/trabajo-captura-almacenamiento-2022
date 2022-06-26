@@ -64,6 +64,16 @@ public class PostgresProductServiceImpl implements IProductService {
 		.collect(Collectors.toList());
 	}
 
+	/**
+	 * Recupera los productos que matcheen con full text search solo en los campos de producto
+	 * 
+	 * @return Lista de Product.
+	 */
+	public List<Product> searchByProductOnly(String aTerm) {
+		return StreamSupport
+		.stream(this.getProductRepository().searchByProductOnly(aTerm, PageRequest.of(0, 100)).getContent().spliterator(), false)
+		.collect(Collectors.toList());
+	}
 
 	public Optional<Product> findById(long anId) {
 		return this.getProductRepository().findById(anId);

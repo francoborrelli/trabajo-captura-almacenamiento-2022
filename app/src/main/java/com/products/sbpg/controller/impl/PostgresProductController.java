@@ -51,6 +51,15 @@ public class PostgresProductController implements IProductController {
 		watch.stop();
 		return new ProductSearchDTO(products, watch.getLastTaskTimeMillis());
 	}
+
+	@GetMapping("/products/search-only-by-product/{term}")
+	public ProductSearchDTO searchProductsOnlyByProducts(@PathVariable(value = "term") String aTerm) {
+		StopWatch watch = new StopWatch();
+		watch.start();
+		List<Product> products = this.productsService.searchByProductOnly(aTerm);
+		watch.stop();
+		return new ProductSearchDTO(products, watch.getLastTaskTimeMillis());
+	}
 	
   @GetMapping("/products/{id}")
     public Optional<Product> getProductById(@PathVariable(value = "id") long productId) throws ResourceNotFoundException {
