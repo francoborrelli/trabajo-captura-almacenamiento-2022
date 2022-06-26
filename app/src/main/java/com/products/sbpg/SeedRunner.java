@@ -10,6 +10,7 @@ import com.products.sbpg.model.Brand;
 import com.products.sbpg.model.Product;
 import com.products.sbpg.repository.PostgresBrandRepository;
 import com.products.sbpg.repository.PostgresProductRepository;
+import com.products.sbpg.search.ElasticProductRepository;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -24,11 +25,14 @@ public class SeedRunner implements CommandLineRunner {
     private static final Logger logger = LoggerFactory.getLogger(SeedRunner.class);
 
     private final PostgresBrandRepository brandRepository;
-    private final PostgresProductRepository productRepository;
+    private final PostgresProductRepository postgresProductRepository;
+    private final ElasticProductRepository elasticProductRepository;
 
-    public SeedRunner(PostgresBrandRepository brandRepository, PostgresProductRepository productRepository) {
+
+    public SeedRunner(PostgresBrandRepository brandRepository, PostgresProductRepository postgresProductRepository, ElasticProductRepository elasticProductRepository) {
         this.brandRepository = brandRepository;
-        this.productRepository = productRepository;
+        this.postgresProductRepository = postgresProductRepository;
+        this.elasticProductRepository = elasticProductRepository;
     }
 
     @Override
@@ -40,10 +44,19 @@ public class SeedRunner implements CommandLineRunner {
         logger.info("SAMPLE SIZE: " + sampleSizeConfig + " (" + sampleSize + ")");
         logger.info(" -------------------------------------");
 
+        logger.info(" -------------------------------------");
+        logger.info("| BORRANDO DATOS |");
+        logger.info(" -------------------------------------");
+
         this.brandRepository.deleteAll();
         this.brandRepository.flush();
-        this.productRepository.deleteAll();
-        this.productRepository.flush();
+        this.postgresProductRepository.deleteAll();
+        this.postgresProductRepository.flush();
+        this.elasticProductRepository.deleteAll();
+
+        logger.info(" -------------------------------------");
+        logger.info("| BORRADO FINALIZADO |");
+        logger.info(" -------------------------------------");
 
         ClassLoader classLoader = getClass().getClassLoader();
         String path = classLoader.getResource("products.tsv").getFile();
@@ -60,7 +73,7 @@ public class SeedRunner implements CommandLineRunner {
             while ((line = bufferedReader.readLine()) != null && lineCount  <= totalLines * sampleSize) {
                 String[] item = line.split("\\t", -1);
                 Brand brand = brandRepository.findOrCreate(item[2]);
-                productRepository.save(new Product(item[1], item[3], brand));
+                postgresProductRepository.save(new Product(item[1], item[3], brand));
                 lineCount++;
                 if (lineCount % 10000 == 0) {
                     logger.info("Cargando datos, completado al {}%",
