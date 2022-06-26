@@ -10,6 +10,12 @@ Para las pruebas se utiliza la librería [api-benchmark](https://www.npmjs.com/p
 
 Antes de correr el benchmark es necesario asegurarse de que existan y estén corriendo los servicios definidos en el compose de la carpeta `app` del proyecto base.
 
+Una vez finalizada la importación de productos, es recomendable realizar un stop del servicio de logstash para evitar lecturas adicionales en postgres.
+
+```
+docker-compose stop logstash
+```
+
 ### 2. Levantar proyecto
 
 ```

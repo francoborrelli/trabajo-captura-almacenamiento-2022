@@ -24,6 +24,8 @@ Esta variable puede configurarse en `./env/.env.app` y admite los siguientes val
 - `LARGE`: Se corresponde al 75% del tamaño total del dataset. Aproximadamente 326.250 productos.
 - `FULL`: Se corresponde al 100% del tamaño total del dataset. Aproximadamente 435.000 productos.
 
+Para garantizar pruebas correctas, es recomendable eliminar los volumenes de datos de este proyecto tras cambiar la variable de entorno.
+
 ### 3. Buildear imagen de docker
 
 ```
