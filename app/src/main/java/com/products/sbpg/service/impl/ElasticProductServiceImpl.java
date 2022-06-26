@@ -47,13 +47,13 @@ public class ElasticProductServiceImpl implements IProductService {
 
 
 	/**
-	 * Recupera todos los productos
+	 * Recupera los productos que matcheen con full text search
 	 * 
 	 * @return Lista de Product.
 	 */
 	public List<Product> search(String aTerm) {
 		return	StreamSupport
-			.stream(this.getProductRepository().findByNameOrDescription(aTerm, aTerm, PageRequest.of(0, 100)).getContent().spliterator(), false)
+			.stream(this.getProductRepository().findByNameOrDescriptionOrBrandName(aTerm, aTerm, aTerm, PageRequest.of(0, 100)).getContent().spliterator(), false)
 			.collect(Collectors.toList());
 	}
 

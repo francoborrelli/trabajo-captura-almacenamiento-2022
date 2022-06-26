@@ -5,11 +5,14 @@ package com.products.sbpg.service.impl;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.products.sbpg.dto.DTOFactory;
@@ -51,12 +54,14 @@ public class PostgresProductServiceImpl implements IProductService {
 	private DTOFactory dtoFactory;
 
 	/**
-	 * Recupera todos los productos
+	 * Recupera los productos que matcheen con full text search
 	 * 
 	 * @return Lista de Product.
 	 */
 	public List<Product> search(String aTerm) {
-		return this.getProductRepository().search(aTerm);
+		return StreamSupport
+		.stream(this.getProductRepository().search(aTerm, PageRequest.of(0, 100)).getContent().spliterator(), false)
+		.collect(Collectors.toList());
 	}
 
 

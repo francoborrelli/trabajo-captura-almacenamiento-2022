@@ -5,6 +5,8 @@ package com.products.sbpg.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -37,7 +39,7 @@ public interface PostgresProductRepository extends JpaRepository<Product, Long> 
 	 * @param aTerm es el termino a utilizar en la búsqueda
 	 * @return una lista de productos
 	 */
-	@Query(nativeQuery = true, value="SELECT * FROM products p WHERE tsvector_search @@ tsquery(:aTerm)") 
-	List<Product> search(@Param("aTerm") String aTerm);
+	@Query(nativeQuery = true, value="SELECT * FROM products p JOIN brands b ON b.id = p.brand_id WHERE p.tsvector_search @@ tsquery(:aTerm) OR b.tsvector_search @@ tsquery(:aTerm)") 
+	Page<Product> search(@Param("aTerm") String aTerm, Pageable pageable);
 
 }
