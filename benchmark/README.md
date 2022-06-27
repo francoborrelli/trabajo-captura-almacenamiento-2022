@@ -26,7 +26,7 @@ Mediante la variable de entorno `BY_PRODUCTS_ONLY` se puede definir que tipo de 
 
 El valor por defecto a utilizar es `1`.
 
-Este valor puede cambiarse directamente desde el archivo `docker-compose.yml`
+Este valor puede cambiarse directamente desde el archivo de variable de entornos `env/.env/benchmark`
 
 ### 3. Levantar proyecto
 
