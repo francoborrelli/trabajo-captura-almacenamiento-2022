@@ -3,6 +3,8 @@ services:
   benchmark:
     restart: always
     container_name: products_benchmark
+    environment:
+      - BY_PRODUCTS_ONLY=1
     volumes:
       - ./input:/app/input/
       - ./output:/app/output/

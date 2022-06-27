@@ -1,10 +1,17 @@
 const fs = require('fs');
 const apiBenchmark = require('api-benchmark');
 
-const services = {
-  elastic: 'http://api:8080/api/elastic/products/search/',
-  postgres: 'http://api:8080/api/postgres/products/search/',
-};
+const byProductsOnly = Number(process.env.BY_PRODUCTS_ONLY);
+
+const services = byProductsOnly
+  ? {
+      elastic: 'http://api:8080/api/elastic/products/search-by-product-only/',
+      postgres: 'http://api:8080/api/postgres/products/search-by-product-only/',
+    }
+  : {
+      elastic: 'http://api:8080/api/elastic/products/search/',
+      postgres: 'http://api:8080/api/postgres/products/search/',
+    };
 
 const benchmarkOptions = {
   debug: true, // (Boolean, default false): Displays some info on the console.
@@ -86,6 +93,8 @@ const getGeneralStats = (results) => {
 };
 
 const runBenchmark = () => {
+  console.log(`VARIABLE BY_PRODUCT_ONLY SETTEADA EN: ${byProductsOnly}`);
+
   showMessage('Comenzando prueba');
   const routes = getRoutes();
   apiBenchmark.measure(services, routes, benchmarkOptions, function (err, results) {
