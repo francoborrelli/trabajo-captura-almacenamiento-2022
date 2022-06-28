@@ -66,7 +66,14 @@ docker-compose logs -f logstash
 GET localhost:8080/api/postgres/products/search/{term}
 ```
 
+Donde `term` corresponde a buscar. Este endpoint devuelve el conjunto de productos que matchean con el término buscado. La búsqueda full-text se hace sobre atributos de productos y de marcas.
+
+```
+GET localhost:8080/api/postgres/products/search-only-by-product/{term}
+```
+
 Donde `term` corresponde a buscar. Este endpoint devuelve el conjunto de productos que matchean con el término buscado.
+La búsqueda full-text se hace *solo *sobre atributos de productos.
 
 ```
 GET localhost:8080/api/postgres/products/{id}
@@ -81,6 +88,14 @@ GET localhost:8080/api/elastic/products/search/{term}
 ```
 
 Donde `term` corresponde a buscar. Este endpoint devuelve el conjunto de productos que matchean con el término buscado.
+La búsqueda full-text se hace sobre atributos de productos y de marcas.
+
+```
+GET localhost:8080/api/elastic/products/search-only-by-product/{term}
+```
+
+Donde `term` corresponde a buscar. Este endpoint devuelve el conjunto de productos que matchean con el término buscado.
+La búsqueda full-text se hace *solo *sobre atributos de productos.
 
 ```
 GET localhost:8080/api/elastic/products/{id}
